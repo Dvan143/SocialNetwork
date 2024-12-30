@@ -7,25 +7,35 @@
     <title>Document</title>
 </head>
 <body>
-    <header>
-        <div class="All_header_menu">
-            <div class="Logo">
-                <h1>MindBreak</h1>
-            </div>
-            <div class="Top_menu">
-                <ul>
-                    <li><a href="/">Главная страница</a></li>
-                    <li><a href="profile">Мой профиль</a></li>
-                    <li><a href="#">Друзья</a></li>
-                    <li><a href="#">Лента</a></li>
-                    <li><a href="#">Сообщения</a></li>
-                </ul>
-            </div>
+<header>
+    <div class="page-header">
+        <div class="logo">
+            <p>Logo</p>
         </div>
-    </header>
+        <a id="menu-icon" class="menu-icon" onclick="onMenuClick()">
+            <i class="fa fa-bars"></i>
+        </a>
+
+        <div id="navigation-bar" class="nav-bar">
+            <a href="#" class="active">Home</a>
+            <a href="#">Services</a>
+            <a href="#">Profile</a>
+            <a href="#">About</a>
+            <a href="#">Contact us</a>
+        </div>
+
+        <div class="header-right"><button>Sign in</button></div>
+    </div>
+</header>
 
     <div>Hello, <span th:text="${userName}"></span></div>
     <div th:text="${email}"></div>
     <div>News feed:</div>
+    <footer>
+        <div>MindBreak is a noncommercial impressive social media for you. There you can found friend and do interesting things. It's not about other social media. It's <h1 class="Logo">MindBreak</h1></div> <br>
+        <a th:href="about.html" class="Top_menu">About us</a>
+        <script type="text/javascript" th:src="@{/js/first.js}"></script>
+        <link rel="stylesheet" th:href="@{/css/styles.css}">
+    </footer>
 </body>
 </html>
