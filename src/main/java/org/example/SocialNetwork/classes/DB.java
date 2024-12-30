@@ -8,10 +8,23 @@ import java.util.*;
 public class DB {
     List<User> dbList = new ArrayList<>();
     int id = 0;
+    // Users for testing
     {
         dbList.add(new User("admin@gmail.com","admin","admin",id++));
         dbList.add(new User("user@gmail.com","user","user",id++));
         dbList.add(new User("user2@yandex.ru","user2","user2",id++));
+    }
+    // Functions to user
+    public void newUser(String mail, String name, String password) {
+        dbList.add(new User(mail, name ,password, id++));
+    }
+    public boolean userExists(String name) {
+        for (User user : dbList) {
+            if (name.equals(user.getName())) {
+                return true;
+            }
+        }
+        return false;
     }
     public String getUserById(int id) {
         for (User user : dbList) {
@@ -21,6 +34,7 @@ public class DB {
         }
         return null;
     }
+    // Functions to id
     public String getIdByName(String name) {
         for (User user : dbList) {
             if (name.equals(user.getName())) {
@@ -29,6 +43,7 @@ public class DB {
         }
         return null;
     }
+    // Functions to email
     public String getEmailById(int id) {
         for (User user : dbList) {
             if (id == user.getId()) {
@@ -44,23 +59,6 @@ public class DB {
             }
         }
     }
-    public boolean passwordcheck(String name, String password) {
-        for (User user : dbList) {
-            if (name.equals(user.getName()) && password.equals(user.getPassword())) return true;
-        }
-        return false;
-    }
-    public void newUser(String mail, String name, String password) {
-        dbList.add(new User(mail, name ,password, id++));
-    }
-    public boolean userExists(String name) {
-        for (User user : dbList) {
-            if (name.equals(user.getName())) {
-                return true;
-            }
-        }
-        return false;
-    }
     public boolean emailExists(String email) {
         for (User user : dbList) {
             if (email.equals(user.getEmail())) {
@@ -68,5 +66,15 @@ public class DB {
             }
         }
         return false;
+    }
+    // Functions to password
+    public boolean passwordcheck(String name, String password) {
+        for (User user : dbList) {
+            if (name.equals(user.getName()) && password.equals(user.getPassword())) return true;
+        }
+        return false;
+    }
+    public void changePassword(User user, String newPassword) {
+        user.setPassword(newPassword);
     }
 }
