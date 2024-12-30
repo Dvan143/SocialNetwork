@@ -14,7 +14,7 @@ public class MainController {
         this.db = db;
     }
     @GetMapping("/hi")
-    public String index(Model model) {
+    public String index() {
         return "index";
     }
     @PostMapping("/auth")
@@ -33,7 +33,7 @@ public class MainController {
         return "profile";
     }
     @GetMapping("resetPassword")
-    public String resetPassword(Model model) {
+    public String resetPassword() {
         return "resetPassword";
     }
     @PostMapping("resetingPassword")
@@ -47,7 +47,7 @@ public class MainController {
         return "resetPassword";
     }
     @GetMapping("/register")
-    public String register(Model model) {
+    public String register() {
         return "register";
     }
     @PostMapping("registerUser")

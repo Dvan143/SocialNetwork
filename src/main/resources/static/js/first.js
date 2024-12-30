@@ -1,4 +1,6 @@
-document.getElementById('forma').addEventListener("submit", checkAuth);
+console.log("hello,world!")
+//document.getElementById('forma').addEventListener("submit", checkAuth);
+
 
 function checkAuth(event){
     event.preventDefault();

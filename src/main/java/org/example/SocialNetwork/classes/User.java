@@ -2,15 +2,17 @@ package org.example.SocialNetwork.classes;
 
 public class User {
     private String email;
-    private String name;
+    private final String name;
     private String password;
-    private int id;
+    private final int id;
+
     public User(String email, String name, String password, int id) {
         this.name = name;
         this.password = password;
         this.id = id;
         this.email = email;
     }
+
     public String getName() {
         return name;
     }
@@ -22,5 +24,8 @@ public class User {
     }
     public String getEmail() {
         return email;
+    }
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
