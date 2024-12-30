@@ -11,8 +11,8 @@
 
 <div>Enter to MindBreak</div>
 <form action="auth" method="post">
-    <input type="text" name="userName" id="userName" placeholder="Login" maxlength="15" minlength="4" pattern="^[a-zA-Z0-9_.-]*$" required> <br>
-    <input type="password" name="password" id="password" placeholder="Password" maxlength="32" minlength="6" pattern="^[a-zA-Z0-9_.-]*$" required> <br>
+    <input type="text" name="userName" id="userName" placeholder="Login" minlength="4" maxlength="32" pattern="^[a-zA-Z0-9_.-]*$" required> <br>
+    <input type="password" name="password" id="password" placeholder="Password" minlength="4" maxlength="32" pattern="^[a-zA-Z0-9_.-]*$" required> <br>
     <button>Enter</button>
 </form>
 <div th:text="${error}"></div>

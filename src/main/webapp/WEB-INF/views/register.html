@@ -26,9 +26,9 @@
 <div class="registration-cssave">
     <form method="post" action="registerUser">
         <h3 class="text-center">Регистрация</h3>
-        <input class="form-control item" type="email" name="email" maxlength="15" minlength="4" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" id="email" placeholder="Почта" required>
-        <input class="form-control item" type="text" name="userName" maxlength="15" minlength="4" pattern="^[a-zA-Z0-9_.-]*$" id="userName" placeholder="Логин" required>
-        <input class="form-control item" type="password" name="password" minlength="6" id="password" placeholder="Пароль" required>
+        <input class="form-control item" type="email" name="email" minlength="4" maxlength="64" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" id="email" placeholder="Почта" required>
+        <input class="form-control item" type="text" name="userName" minlength="4" maxlength="32" pattern="^[a-zA-Z0-9_.-]*$" id="userName" placeholder="Логин" required>
+        <input class="form-control item" type="password" name="password" minlength="4" maxlength="32" id="password" placeholder="Пароль" required>
         <div class="form-group">
             <button>Send</button>
         </div>
