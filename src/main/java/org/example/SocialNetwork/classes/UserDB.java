@@ -1,11 +1,18 @@
 package org.example.SocialNetwork.classes;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
-public class DB {
+public class UserDB {
+    NewsDB newsDB;
+    @Autowired
+    public UserDB(NewsDB newsDB) {
+        this.newsDB = newsDB;
+    }
+
     List<User> dbList = new ArrayList<>();
     int id = 0;
     // Users for testing
@@ -83,5 +90,9 @@ public class DB {
     }
     public void removeFriend(User user1, User user2) {
         user1.removeFriend(user2);
+    }
+    // Functions to news feed
+    public void addNews(String title, String content){
+        //newsDB.addNews("");
     }
 }

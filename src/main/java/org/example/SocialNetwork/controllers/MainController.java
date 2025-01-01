@@ -1,6 +1,6 @@
 package org.example.SocialNetwork.controllers;
 
-import org.example.SocialNetwork.classes.DB;
+import org.example.SocialNetwork.classes.UserDB;
 import org.example.SocialNetwork.classes.NewsDB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class MainController {
-    DB db;
-    NewsDB newsDB;
+    UserDB userDb;
+    NewsDB newsDb;
 
     @Autowired
-    public MainController(DB db, NewsDB newsDB) {
-        this.db = db;
-        this.newsDB = newsDB;
+    public MainController(UserDB userDb, NewsDB newsDb) {
+        this.userDb = userDb;
+        this.newsDb = newsDb;
     }
 
     @GetMapping("/hi")
@@ -25,8 +25,8 @@ public class MainController {
     }
     @GetMapping("/profile/{id}")
     public String hello(@PathVariable("id") int id, Model model) {
-        model.addAttribute("userName", db.getUserById(id));
-        model.addAttribute("email", db.getEmailById(id));
+        model.addAttribute("userName", userDb.getUserById(id));
+        model.addAttribute("email", userDb.getEmailById(id));
         return "profile";
     }
     @GetMapping("/resetPassword")
@@ -39,8 +39,8 @@ public class MainController {
     }
     @GetMapping("/news")
     public String news(Model model) {
-        model.addAttribute("allNews",newsDB.getNewsList()[0]);
-        model.addAttribute("lastNews", newsDB.getNewsList()[1]);
+        model.addAttribute("allNews", newsDb.getNewsList()[0]);
+        model.addAttribute("lastNews", newsDb.getNewsList()[1]);
         return "news";
     }
 }

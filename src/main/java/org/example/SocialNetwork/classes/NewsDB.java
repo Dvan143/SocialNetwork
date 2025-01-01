@@ -2,14 +2,22 @@ package org.example.SocialNetwork.classes;
 
 import org.springframework.stereotype.Service;
 
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
+import java.time.LocalDate;
 
 @Service
 public class NewsDB {
     List<News> newsList = new LinkedList<>();
+    LocalDate currentTime = LocalDate.now();
 
-    public void createNews(String date, String title, String content, String author) {
+    // Adding News with explicit indication of this date
+    public void addNews(String title, String content, String author) {
+        newsList.add(new News(currentTime.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")), title, content, author));
+    }
+    // Adding News without explicit indication of this date
+    public void addNews(String date, String title, String content, String author) {
         newsList.add(new News(date, title, content, author));
     }
 
@@ -26,9 +34,11 @@ public class NewsDB {
     }
     // init data
     {
-        createNews("12.02.2023","Hello world", "World has been hellowed", "Jo biden))");
-        createNews("17.12.2023","Hello world", "World has been hellowed again", "Jo biden))");
-        createNews("28.12.2024","Hello world", "World has been hellowed again too", "Jo biden))");
-        createNews("01.01.2025","Hello world", "World has been hellowed again too", "Jo biden))");
+        // with date
+        addNews("12.02.2023","Hello world", "World has been hellowed", "Jo biden))");
+        addNews("17.12.2023","Hello world", "World has been hellowed again", "Jo biden))");
+        addNews("28.12.2024","Hello world", "World has been hellowed again too", "Jo biden))");
+        // without date
+        addNews("Hello world", "World has been hellowed again too", "Jo biden))");
     }
 }

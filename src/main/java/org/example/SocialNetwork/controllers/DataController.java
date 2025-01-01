@@ -1,6 +1,7 @@
 package org.example.SocialNetwork.controllers;
 
-import org.example.SocialNetwork.classes.DB;
+import org.example.SocialNetwork.classes.NewsDB;
+import org.example.SocialNetwork.classes.UserDB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,41 +11,52 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class DataController {
-    DB db;
+    private final NewsDB newsDB;
+    UserDB userDb;
+    NewsDB newsDb;
     @Autowired
-    public DataController(DB db) {
-        this.db = db;
+    public DataController(UserDB userDb, NewsDB newsDb, NewsDB newsDB) {
+        this.userDb = userDb;
+        this.newsDb = newsDb;
+        this.newsDB = newsDB;
     }
     @PostMapping("/registerUser")
     public String register(@RequestParam("email") String email, @RequestParam("userName") String userName, @RequestParam("password") String password, Model model) {
-        if(db.userExists(userName)){
+        if(userDb.userExists(userName)){
             model.addAttribute("info","User already exists");
-        } else if (db.emailExists(email)) {
+        } else if (userDb.emailExists(email)) {
             model.addAttribute("info","Email already exists");
         } else {
             model.addAttribute("info","User already exists");
-            db.newUser(email, userName, password);
+            userDb.newUser(email, userName, password);
             model.addAttribute("info", "User registered successfully");
         }
         return "register";
     }
     @PostMapping("/auth")
     public String userPanel(@ModelAttribute("userName") String userName, @RequestParam("password") String password, Model model) {
-        if(!db.passwordcheck(userName,password)){
+        if(!userDb.passwordcheck(userName,password)){
             model.addAttribute("error","Invalid password");
         }else{
-            return "redirect:/profile/" + db.getIdByName(userName);
+            return "redirect:/profile/" + userDb.getIdByName(userName);
         }
         return "index";
     }
     @PostMapping("/resetMyPassword")
     public String resetingPassword(@RequestParam("email") String email, Model model){
-        if(db.emailExists(email)){
-            db.resetPasswordByEmail(email);
+        if(userDb.emailExists(email)){
+            userDb.resetPasswordByEmail(email);
             model.addAttribute("info","Message has been sent");
         } else {
             model.addAttribute("info","Email does not exist");
         }
         return "resetPassword";
+    }
+    @PostMapping("/addNews")
+    public String addNews(@RequestParam("title") String title, @RequestParam("content") String content,@RequestParam("author") String author, Model model){
+        newsDb.addNews(title,content,author);
+        model.addAttribute("allNews", newsDb.getNewsList()[0]);
+        model.addAttribute("lastNews", newsDb.getNewsList()[1]);
+        return "news";
     }
 }
