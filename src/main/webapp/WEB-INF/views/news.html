@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>News feed</title>
+</head>
+<body>
+<table>
+    <tr th:each="i : ${allNews}">
+        <td th:text="${i}"></td>
+    </tr>
+</table>
+<table>
+    <tr th:each="j : ${lastNews}">
+        <td th:text="${j}"></td>
+    </tr>
+</table>
+</body>
+</html>

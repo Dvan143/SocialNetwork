@@ -7,25 +7,27 @@
     <title>Document</title>
 </head>
 <body>
-    <header>
-        <div class="All_header_menu">
-            <div class="Logo">
-                <h1>MindBreak</h1>
-            </div>
-            <div class="Top_menu">
-                <ul>
-                    <li><a href="/">Главная страница</a></li>
-                    <li><a href="profile">Мой профиль</a></li>
-                    <li><a href="#">Друзья</a></li>
-                    <li><a href="#">Лента</a></li>
-                    <li><a href="#">Сообщения</a></li>
-                </ul>
-            </div>
+<header>
+    <div class="page-header">
+        <div class="logo">
+            <p>MindBreak</p>
         </div>
-    </header>
 
+        <div id="navigation-bar" class="nav-bar">
+            <a href="#">Profile</a>
+            <a href="#">News feed</a>
+            <a href="#">Friends</a>
+            <a th:href="@{/settings}">Settings</a>
+            <a href="#">Log out</a>
+        </div>
+    </div>
+</header>
+<div class="maintext">
     <div>Hello, <span th:text="${userName}"></span></div>
-    <div th:text="${email}"></div>
     <div>News feed:</div>
+    <div th:text="${news}"></div>
+</div>
+<script type="text/javascript" th:src="@{/js/first.js}"></script>
+<link rel="stylesheet" th:href="@{/css/styles.css}">
 </body>
 </html>
