@@ -1,18 +1,24 @@
 package org.example.SocialNetwork.controllers;
 
 import org.example.SocialNetwork.classes.DB;
+import org.example.SocialNetwork.classes.NewsDB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+
 @Controller
 public class MainController {
     DB db;
+    NewsDB newsDB;
+
     @Autowired
-    public MainController(DB db) {
+    public MainController(DB db, NewsDB newsDB) {
         this.db = db;
+        this.newsDB = newsDB;
     }
+
     @GetMapping("/hi")
     public String index() {
         return "index";
@@ -31,5 +37,10 @@ public class MainController {
     public String register() {
         return "register";
     }
-
+    @GetMapping("/news")
+    public String news(Model model) {
+        model.addAttribute("allNews",newsDB.getNewsList()[0]);
+        model.addAttribute("lastNews", newsDB.getNewsList()[1]);
+        return "news";
+    }
 }

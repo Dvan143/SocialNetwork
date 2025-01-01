@@ -77,4 +77,11 @@ public class DB {
     public void changePassword(User user, String newPassword) {
         user.setPassword(newPassword);
     }
+    // Functions to friend
+    public void addFriend(User user1, User user2) {
+        user1.addFriend(user2);
+    }
+    public void removeFriend(User user1, User user2) {
+        user1.removeFriend(user2);
+    }
 }

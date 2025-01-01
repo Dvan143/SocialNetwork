@@ -4,6 +4,7 @@ import org.example.SocialNetwork.classes.DB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -28,7 +29,7 @@ public class DataController {
         return "register";
     }
     @PostMapping("/auth")
-    public String userPanel(@RequestParam("userName") String userName, @RequestParam("password") String password, Model model) {
+    public String userPanel(@ModelAttribute("userName") String userName, @RequestParam("password") String password, Model model) {
         if(!db.passwordcheck(userName,password)){
             model.addAttribute("error","Invalid password");
         }else{
